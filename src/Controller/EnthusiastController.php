@@ -14,14 +14,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class EnthusiastController
+ *
+ * @package App\Controller
+ */
 class EnthusiastController extends AbstractController
 {
-    /**
-     * @Route("/", name="landing")
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
+  /**
+   * @Route("/", name="landing")
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+   * @throws \Exception
+   */
     public function index(Request $request)
     {
         $enthusiast = new Enthusiast();
