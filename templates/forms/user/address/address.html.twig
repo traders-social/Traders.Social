@@ -1,0 +1,8 @@
+<div class="container">
+    {% for field in address %}
+    <div class="row">
+        {{ form_label(field) }}
+        {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    {% endfor %}
+</div>
