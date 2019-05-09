@@ -8,7 +8,6 @@
 
 namespace App\Controller\User;
 
-
 use App\Entity\Security\Role;
 use App\Entity\User;
 use App\Form\UserLoginType;
