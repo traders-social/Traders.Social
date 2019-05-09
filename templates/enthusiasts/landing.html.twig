@@ -1,0 +1,22 @@
+{% extends 'enthusiasts/base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3 class="display-4 text-center w-100"><a class="brand" href="#"><i class="brand-icon fas fa-fish"></i>TRADERS</a></h3>
+            <p class="text-muted text-center w-100">
+                We're launching the first ever <b>Social</b> trading platform<br/>
+                Interested? We'll mail you an <i>exclusive code</i> when we launch!
+            </p>
+        </div>
+    </div>
+    <div class="row row-form">
+        <div class="col">
+            {{ form_start(form) }}
+            {% include '/forms/landing.html.twig' with { 'form': form } %}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
