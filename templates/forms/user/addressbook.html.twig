@@ -1,0 +1,19 @@
+<div class="container-fluid container-addressbook">
+    <h3>
+        <i class="fas fa-map-marker-alt"></i> Address
+        <button class="btn btn-sm btn-primary" data-controls="collection" data-action="add-item"
+                data-collection="addressbook"><i class="fas fa-plus"></i></button>
+    </h3>
+    <div class="addressbook-addresslist row"
+         data-collection="addressbook"
+         data-collection-item-prototype="{% filter escape %}{% include '/forms/user/address/address.html.twig' with {'address': addresses.vars.prototype} %}{% endfilter %}"
+         data-collection-item-container="{{ '<div class="col-xl-4 col-md-6 col-sm-12 address"></div>'|e }}"
+         data-collection-item-controls="{{ '<button class="btn btn-sm btn-primary" data-controls="collection" data-action="remove-item" data-collection="addressbook"><i class="fas fa-minus"></i></button>'|e }}"
+         data-collection-item-counter="{{ addresses.children|length }}">
+        {% for address in addresses %}
+            {% include '/forms/user/address/address.html.twig' with {'address': address} %}
+        {% endfor %}
+    </div>
+</div>
+
+<script src="/js/dynamic-collections.js"></script>
