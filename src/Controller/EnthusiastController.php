@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EnthusiastController extends AbstractController
 {
   /**
-   * @Route("/", name="landing")
+   * @Route("/landing", name="landing")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *

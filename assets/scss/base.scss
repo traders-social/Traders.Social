@@ -11,5 +11,34 @@ html {
   background-color: #FFFFFF;
 }
 
+#wrapper {
+  display: flex;
+  flex-direction: column;  /* learn more: http://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/ */
 
+  #main-content {
+    flex: 1;
+
+    & > .container, & > .container-fluid {
+      background: #FFFFFF;
+
+      .row.row-tagline {
+        padding: 15px 40px;
+        font-style: italic;
+      }
+    }
+  }
+
+  & > footer {
+    padding-top: 30px;
+    background: $baseDark;
+
+    color: white;
+  }
+
+}
+
+
+
+@import "helper";
+@import "home/home";
 
