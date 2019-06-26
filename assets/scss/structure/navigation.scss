@@ -1,0 +1,63 @@
+#main-navigation {
+  background: url('/assets/images/header-background.jpg') center center no-repeat;
+  background-size: cover;
+  font-weight: 600;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0;
+
+  .container-fluid {
+    padding: 0;
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.40);
+      width: 100%;
+      position: relative;
+      padding: 15px 20px;
+
+      @media (min-width: 768px) {
+        & > .row > .col {
+          display: flex;
+        }
+      }
+    }
+
+    .main-menu {
+      padding-top: 10px;
+
+      .nav-link:hover {
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.25);
+      }
+    }
+
+    .navbar-brand {
+      color: #FFFFFF;
+      font-size: 2em;
+
+      font-style: italic;
+      font-weight: bolder;
+
+      .brand-icon {
+        font-size: 1.1em;
+        font-weight: bolder;
+        margin-right: 10px;
+        color: $baseTheme;
+      }
+
+
+
+      .text-muted {
+        font-size: 0.6em;
+        margin-top: -10px;
+      }
+    }
+
+    .nav-link {
+      color: #FFFFFF;
+      padding-left: 10px;
+    }
+  }
+}
+
+@import "structure/user/navigation";
