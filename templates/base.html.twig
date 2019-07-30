@@ -18,7 +18,7 @@
             <header>
                 {% block header %}{% endblock %}
             </header>
-            <div id="main-content" class="h-100">
+            <div id="main-content">
                 <div class="container-fluid">
                     <div class="row row-tagline">
                         <h2 class="display-4 text-center w-100">{% block tagline %}{% endblock %}</h2>
@@ -32,7 +32,6 @@
                 {% block footer %}{% endblock %}
             </footer>
         </div>
-
         {% block javascripts %}
             <script src="{{ asset('build/app.js') }}"
                     crossorigin="anonymous"></script>

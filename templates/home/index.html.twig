@@ -35,35 +35,5 @@
 {% endblock %}
 
 {% block footer %}
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <strong>About</strong>
-                <ul>
-                    <li>Contact us</li>
-                    <li>Disclaimer</li>
-                    <li>Terms and Conditions</li>
-                    <li>User Agreement</li>
-                </ul>
-            </div>
-            <div class="col-4">
-                <strong>Users</strong>
-                <ul>
-                    <li>Register</li>
-                    <li>Find a seller</li>
-                    <li>Find a buyer</li>
-                    <li>Search</li>
-                </ul>
-            </div>
-            <div class="col-4">
-                <strong>Hot right now</strong>
-                <ul>
-                    <li>Lorem ipsup</li>
-                    <li>Dolor</li>
-                    <li>Sit amet</li>
-                    <li>and other placeholder text</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    {% include 'structure/navigation/navigation.footer.html.twig' %}
 {% endblock %}
