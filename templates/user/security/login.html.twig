@@ -1,21 +1,27 @@
-{% extends '/base.html.twig' %}
+{% extends 'base.html.twig' %}
+{% block title %}🐟 Traders.Social - Login{% endblock %}
 
-{% block title %}Log in!{% endblock %}
+{% block header %}
+    {% include 'structure/navigation/navigation.top.html.twig' %}
+{% endblock %}
 
 {% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Welcome back Trader,</h3>
+                <p>You can login to your account using the form below</p>
+            </div>
+        </div>
+    </div>
+    {{ error }}
     {{ form_start(form) }}
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    {% include '/forms/user/login.html.twig' with { 'form': form } %}
+    {{ form_end(form, {'render_rest': false}) }}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-    {{ form_row(form.username) }}
-    {{ form_row(form.password) }}
+{% endblock %}
 
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-    <button type="submit">Login!</button>
-    {{ form_end(form) }}
-
+{% block footer %}
+    {% include 'structure/navigation/navigation.footer.html.twig' %}
 {% endblock %}

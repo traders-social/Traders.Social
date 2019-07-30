@@ -11,6 +11,7 @@ namespace App\Controller\User;
 
 use App\Entity\Security\Role;
 use App\Entity\User;
+use App\Form\UserLoginType;
 use App\Form\UserRegisterType;
 use Doctrine\ORM\Id\UuidGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,10 +19,35 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AuthenticationController extends AbstractController
 {
-    
+  
+  /**
+   * @param Request $request
+   * @param AuthenticationUtils $authenticationUtils
+   * @return Response
+   * @Route("/login", name="user.login")
+   */
+    public function login(Request $request, AuthenticationUtils $authenticationUtils) : Response
+    {
+      $form = $this->createForm(UserLoginType::class);
+      $form->handleRequest($request);
+      
+      if ($form->isSubmitted() && $form->isValid())
+      {
+        return $this->redirectToRoute('user.profile');
+      }
+  
+      // get the login error if there is one
+      $error = $authenticationUtils->getLastAuthenticationError();
+      return $this->render(
+        'user/security/login.html.twig',
+        ['form' => $form->createView(), 'error' => $error]
+      );
+    }
+  
     /**
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
