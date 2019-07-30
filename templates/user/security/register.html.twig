@@ -1,19 +1,25 @@
-{% extends '/base.html.twig' %}
+{% extends 'base.html.twig' %}
+{% block title %}🐟 Traders.Social - Account Creation{% endblock %}
 
-{% block title %}Create an account{% endblock %}
-
-{% block tagline %}Register to become a trader now!{% endblock %}
+{% block header %}
+    {% include 'structure/navigation/navigation.top.html.twig' %}
+{% endblock %}
 
 {% block body %}
-    <div class="wrapper">
-        <div class="register-eyecatcher"></div>
-        <div class="register-content">
-            <div class="container-fluid container-errors">
-                {{ form_errors(form) }}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Welcome Trader,</h3>
+                <p>We're happy you want to join other Traders on our social platform. We just need some basic information to create your account, the collected information ensures a safe and informed trading environment for all Traders on the platform</p>
             </div>
-            {{ form_start(form) }}
-            {% include '/forms/register.html.twig' with { 'form': form } %}
-            {{ form_end(form) }}
         </div>
     </div>
+    {{ form_start(form) }}
+    {% include '/forms/user/register.html.twig' with { 'form': form } %}
+    {{ form_end(form, {'render_rest': false}) }}
+
+{% endblock %}
+
+{% block footer %}
+    {% include 'structure/navigation/navigation.footer.html.twig' %}
 {% endblock %}

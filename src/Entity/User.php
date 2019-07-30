@@ -226,7 +226,6 @@ class User implements UserInterface
     public function setRole(?Role $role): self
     {
         $this->role = $role;
-
         return $this;
     }
 }

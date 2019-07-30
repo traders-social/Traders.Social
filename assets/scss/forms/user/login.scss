@@ -1,0 +1,37 @@
+#login_form {
+  & > .row:not(.row-errors) {
+    & > .col {
+      padding: 50px 20px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      & .col-left {
+        padding-left: calc(50% - 570px);
+      }
+
+      & .col-right {
+        padding-right: calc(50% - 570px);
+      }
+    }
+
+    & > .col-image {
+      background-position: center center;
+      background-size: cover;
+    }
+  }
+
+  .form {
+    .form-title {
+      margin-bottom: 25px;
+
+      i {
+        margin-right: 10px;
+      }
+    }
+
+    .row {
+      padding-top: 2.5px;
+      padding-bottom: 2.5px;
+    }
+  }
+}
