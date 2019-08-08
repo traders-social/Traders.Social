@@ -3,7 +3,7 @@
 namespace App\Security;
 
 use App\Entity\User;
-use App\Form\UserLoginType;
+use App\Form\User\LoginType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,8 +45,7 @@ class UserLoginAuthenticator extends AbstractFormLoginAuthenticator
   
   public function getCredentials(Request $request)
   {
-    $form_data = $request->request->get('user_login');
-    
+    $form_data = $request->request->get('login');
     $credentials = [
       'username' => $form_data['username'],
       'password' => $form_data['password'],
@@ -62,7 +61,7 @@ class UserLoginAuthenticator extends AbstractFormLoginAuthenticator
   
   public function getUser($credentials, UserProviderInterface $userProvider)
   {
-    $token = new CsrfToken(UserLoginType::class, $credentials['csrf_token']);
+    $token = new CsrfToken(LoginType::class, $credentials['csrf_token']);
     if (!$this->csrfTokenManager->isTokenValid($token)) {
       throw new InvalidCsrfTokenException();
     }

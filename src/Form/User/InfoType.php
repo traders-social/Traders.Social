@@ -4,17 +4,19 @@
  * @author Boris Wintein<boris.wintein@gmail.com>
  */
 
-namespace App\Form;
+namespace App\Form\User;
 
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
-class UserInfoType extends AbstractType
+class InfoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -25,6 +27,12 @@ class UserInfoType extends AbstractType
             ->add('lastname', TextType::class)
             ->add('phone', TextType::class)
             ->add('email', TextType::class)
+            ->add('avatar_file', FileType::class,
+              [
+                'mapped' => false,
+                'required' => false,
+              ]
+            );
         ;
     }
 
@@ -32,6 +40,7 @@ class UserInfoType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => User\Info::class,
+            'allow_file_upload' => true,
         ));
     }
 }

@@ -8,43 +8,49 @@
 
                 <div class="container">
                     <div class="row">
-                        {{ form_label(user.username) }}
+                        <div class="col-2">
+                            {{ form_label(user.username) }}
+                        </div>
                         <div class="col">
-                            {{ form_widget(user.username, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_widget(user.username) }}
                         </div>
                     </div>
-
-                    <div class="row">
+                    <div class="row row-errors">
                         <div class="col">
                             <span class="field-error">{{ form_errors(user.username) }}</span>
                         </div>
                     </div>
 
                     <div class="row">
-                        {{ form_label(user.plainPassword.first) }}
+                        <div class="col-2">
+                            {{ form_label(user.plainPassword.first) }}
+                        </div>
                         <div class="col">
-                            {{ form_widget(user.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_widget(user.plainPassword.first) }}
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row row-errors">
                         <div class="col">
                             <span class="field-error">{{ form_errors(user.plainPassword.first) }}</span>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        {{ form_label(user.plainPassword.second) }}
+                        <div class="col-2">
+                            {{ form_label(user.plainPassword.second) }}
+                        </div>
                         <div class="col">
-                            {{ form_widget(user.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_widget(user.plainPassword.second) }}
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row row-errors">
                         <div class="col">
                             <span class="field-error">{{ form_errors(user.plainPassword.second) }}</span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

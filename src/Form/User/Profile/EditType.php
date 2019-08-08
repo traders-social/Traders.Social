@@ -1,23 +1,24 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Boris
- * Date: 28/10/2018
- * Time: 18:53
+ * Traders.Social
+ *
+ * @author Boris Wintein<boris.wintein@gmail.com>
  */
 
-namespace App\Form;
+namespace App\Form\User\Profile;
 
+use App\Form\AddressType;
+use App\Form\User\InfoType;
 use App\Http\Request\Handler\UserRegisterRequestHandler;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserRegisterType extends AbstractType
+class EditType extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
@@ -25,10 +26,8 @@ class UserRegisterType extends AbstractType
     
     $data = $options['data'];
     $builder
-      ->setRequestHandler(new UserRegisterRequestHandler())
       ->setMethod(Request::METHOD_POST)
-      ->add('user', UserType::class, ['data' => $data['user']])
-      ->add('userinfo', UserInfoType::class, ['data' => $data['info']])
+      ->add('userinfo', InfoType::class, ['data' => $data['info']])
       ->add('addresses', CollectionType::class, [
         'entry_type' => AddressType::class,
         'entry_options' => [
@@ -38,8 +37,6 @@ class UserRegisterType extends AbstractType
         'allow_delete' => true,
         'prototype' => true
       ])
-      ->add('uuid', HiddenType::class, ['data' => $data['uuid']])
-      ->add('register', SubmitType::class)
     ;
   }
   
@@ -48,7 +45,8 @@ class UserRegisterType extends AbstractType
     $resolver->setDefaults(array(
       'csrf_protection' => true,
       'csrf_field_name' => '_token',
-      'csrf_token_id'   => UserRegisterType::class,
+      'csrf_token_id'   => EditType::class,
     ));
   }
+  
 }

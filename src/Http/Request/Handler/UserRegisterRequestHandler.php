@@ -13,6 +13,6 @@ class UserRegisterRequestHandler extends HttpFoundationRequestHandler implements
 {
     public function isFileUpload($data)
     {
-        return false;
+        return true;
     }
 }

@@ -33,4 +33,19 @@
       padding-bottom: 2.5px;
     }
   }
+
+  .image-preview-container {
+
+    border: $custom-file-border-width solid $custom-file-border-color;
+    @include border-radius($custom-file-border-radius);
+
+    label {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    img {
+      max-height: 200px;
+    }
+  }
 }

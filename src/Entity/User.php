@@ -228,4 +228,29 @@ class User implements UserInterface
         $this->role = $role;
         return $this;
     }
+    
+    public function getFeed() {
+      return [
+        [
+          'type' => 'auction',
+          'title' => 'title' . rand(0, 100000),
+          'description' => 'description ' . rand(0, 100000)
+        ],
+        [
+          'type' => 'auction',
+          'title' => 'title' . rand(0, 100000),
+          'description' => 'description ' . rand(0, 100000)
+        ],
+        [
+          'type' => 'auction',
+          'title' => 'title' . rand(0, 100000),
+          'description' => 'description ' . rand(0, 100000)
+        ],
+        [
+          'type' => 'auction',
+          'title' => 'title' . rand(0, 100000),
+          'description' => 'description ' . rand(0, 100000)
+        ],
+      ];
+    }
 }

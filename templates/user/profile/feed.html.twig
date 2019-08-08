@@ -1,0 +1,22 @@
+<div class="user-feed container-fluid">
+    <div class="row row-header">
+        <div class="col-2">
+            Type
+        </div>
+        <div class="col-10">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-2 feed-item-title">
+                        Title
+                    </div>
+                    <div class="col-10 feed-item-description">
+                        Description
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for item in user.feed %}
+        {% include 'user/profile/feed/item.html.twig' with {'item': item} %}
+    {% endfor %}
+</div>

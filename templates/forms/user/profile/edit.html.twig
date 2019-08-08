@@ -1,0 +1,18 @@
+<div class="row row-form row-errors">
+    <div class="col">
+        {{ form_errors(form) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col col-right">{% include '/forms/user/info.html.twig' with {'userinfo': form.userinfo} %}</div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="container">
+            {% include '/forms/user/addressbook.html.twig' with {'addresses': form.addresses} %}
+        </div>
+    </div>
+</div>
+{{ form_row(form._token) }}
+
+

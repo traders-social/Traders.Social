@@ -4,7 +4,7 @@
  * @author Boris Wintein<boris.wintein@gmail.com>
  */
 
-namespace App\Form;
+namespace App\Form\User;
 
 
 use App\Entity\User;
@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserLoginType extends AbstractType
+class LoginType extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
@@ -33,7 +33,9 @@ class UserLoginType extends AbstractType
       'data_class' => User::class,
       'csrf_protection' => true,
       'csrf_field_name' => '_token',
-      'csrf_token_id'   => UserLoginType::class,
+      'csrf_token_id'   => LoginType::class,
     ));
   }
+  
+  
 }

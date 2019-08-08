@@ -1,15 +1,21 @@
 <div class="container-fluid container-compound-form" id="login_form">
-    <div class="row row-form row-errors">
-        <div class="col">
-            {{ form_errors(form) }}
-        </div>
-    </div>
-
     <div class="row">
         <div class="col col-left">
             <div class="container">
+                {% if error %}
+                <div class="row row-errors">
+                    <div class="col">
+                        <div class="alert alert-danger" role="alert">
+                            {{ form_errors(form) }}
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
                 <div class="row">
-                    {{ form_label(form.username) }}
+                    <div class="col-2">
+                        {{ form_label(form.username) }}
+                    </div>
                     <div class="col">
                         {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
                     </div>
@@ -22,7 +28,9 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-2">
                     {{ form_label(form.password) }}
+                    </div>
                     <div class="col">
                         {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
                     </div>

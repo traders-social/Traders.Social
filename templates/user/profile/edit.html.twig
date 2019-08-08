@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}🐟 Traders.Social - Profile of {{ app.user.username }}{% endblock %}
+{% block title %}🐟 Traders.Social - Editing profile of {{ app.user.username }}{% endblock %}
 
 {% block header %}
     {% include 'structure/navigation/navigation.top.html.twig' %}
@@ -9,13 +9,16 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h3>Welcome back {{ app.user.info.firstname }},</h3>
+
             </div>
         </div>
         <div class="row">
             <div class="col-8">
-                <h5>Activity Feed</h5>
-                {% include 'user/profile/feed.html.twig' with {'user': app.user} %}
+                <div class="container-fluid">
+                    {{ form_start(form) }}
+                    {% include '/forms/user/profile/edit.html.twig' with { 'form': form } %}
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
             </div>
             <div class="col-4">
                 {% include 'structure/navigation/user/quick-access.html.twig' %}

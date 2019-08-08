@@ -12,6 +12,9 @@ security:
             security: false
         main:
             anonymous: true
+            logout:
+                path: user.logout
+                target: home
             guard:
                 authenticators:
                     - App\Security\UserLoginAuthenticator

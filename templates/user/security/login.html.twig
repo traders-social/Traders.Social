@@ -14,9 +14,8 @@
             </div>
         </div>
     </div>
-    {{ error }}
     {{ form_start(form) }}
-    {% include '/forms/user/login.html.twig' with { 'form': form } %}
+    {% include '/forms/user/login.html.twig' with { 'form': form, 'error': error } %}
     {{ form_end(form, {'render_rest': false}) }}
 
 
