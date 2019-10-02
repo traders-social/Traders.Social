@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Role extends \Symfony\Component\Security\Core\Role\Role
 {
-  
   const ROLE_ADMIN = 1;
   const ROLE_MODERATOR = 2;
   const ROLE_USER = 3;

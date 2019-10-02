@@ -1,0 +1,11 @@
+<tr class="">
+    <td>{{ auction.Title }}</td>
+    <td>{{ auction.Description }}</td>
+    <td>{{ auction.CreatedAt|date("D, jS F Y") }}</td>
+    <td>{{ auction.UpdatedAt|date("D, jS F Y") }}</td>
+    <td>
+        <a href="{{ path('auction.edit', {'id': auction.id}) }}" class="btn btn-primary btn-sm btn-edit"><i class="far fa-edit"></i></a>
+        <a class="btn btn-danger btn-sm btn-delete"><i class="far fa-trash-alt"></i></a>
+    </td>
+</tr>
+

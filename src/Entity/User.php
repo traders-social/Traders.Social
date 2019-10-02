@@ -2,7 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Auction\Bid;
 use App\Entity\Security\Role;
+use App\Entity\Traits\ModificationAware;
+use App\Entity\Traits\ModificationTimestamped;
+use App\Entity\Traits\SoftDeletable;
 use App\Entity\User\Address;
 use App\Entity\User\Info;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,9 +16,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class User implements UserInterface
 {
+    use SoftDeletable, ModificationTimestamped;
+  
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -55,10 +62,22 @@ class User implements UserInterface
      * @ORM\JoinColumn(nullable=false)
      */
     private $role;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Auction", mappedBy="created_by", orphanRemoval=true)
+     */
+    private $ownedAuction;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Auction\Bid", mappedBy="User", orphanRemoval=true)
+     */
+    private $bids;
     
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
+        $this->ownedAuction = new ArrayCollection();
+        $this->bids = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -252,5 +271,52 @@ class User implements UserInterface
           'description' => 'description ' . rand(0, 100000)
         ],
       ];
+    }
+
+    /**
+     * @return Collection|Auction[]
+     */
+    public function getOwnedAuction(): Collection
+    {
+        return $this->ownedAuction;
+    }
+
+    public function addOwnedAuction(Auction $ownedAuction): self
+    {
+        if (!$this->ownedAuction->contains($ownedAuction)) {
+            $this->ownedAuction[] = $ownedAuction;
+        }
+
+        return $this;
+    }
+        /**
+     * @return Collection|Bid[]
+     */
+    public function getBids(): Collection
+    {
+        return $this->bids;
+    }
+
+    public function addBid(Bid $bid): self
+    {
+        if (!$this->bids->contains($bid)) {
+            $this->bids[] = $bid;
+            $bid->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBid(Bid $bid): self
+    {
+        if ($this->bids->contains($bid)) {
+            $this->bids->removeElement($bid);
+            // set the owning side to null (unless already changed)
+            if ($bid->getUser() === $this) {
+                $bid->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

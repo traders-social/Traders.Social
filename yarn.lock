@@ -625,6 +625,13 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@editorjs/editorjs@^2.15.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.15.0.tgz#7bb1cd38863e613be904a7e3d048a99590c9f5d9"
+  integrity sha512-qMuoihMgqlS6HAOQM+rAusmsByYW83kEL+PKn75DLTQh6BD5GbXt21rAotaMRuGOKl+pXoruq1etz/QNgIBCFA==
+  dependencies:
+    codex-notifier "^1.1.2"
+
 "@symfony/webpack-encore@^0.27.0":
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-0.27.0.tgz#efc960967823b5ff93881222f16496f1fa709f24"
@@ -1596,6 +1603,11 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
+
+codex-notifier@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/codex-notifier/-/codex-notifier-1.1.2.tgz#a733079185f4c927fa296f1d71eb8753fe080895"
+  integrity sha512-DCp6xe/LGueJ1N5sXEwcBc3r3PyVkEEDNWCVigfvywAkeXcZMk9K41a31tkEFBW0Ptlwji6/JlAb49E3Yrxbtg==
 
 collection-visit@^1.0.0:
   version "1.0.0"

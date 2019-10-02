@@ -12,14 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait SoftDeletable
 {
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $deleted_at;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User")
-     */
-    private $deleted_by;
-
+  /**
+   * @ORM\Column(type="datetime",nullable=true)
+   */
+  private $deleted_at;
+  
+  /**
+   * @ORM\ManyToOne(targetEntity="App\Entity\User")
+   */
+  private $deleted_by;
+  
 }
