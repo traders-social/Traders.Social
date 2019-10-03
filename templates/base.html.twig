@@ -11,20 +11,18 @@
                   integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
             <link href="{{ asset('build/app.css') }}" rel="stylesheet">
         {% endblock %}
-
     </head>
     <body>
-        <div id="wrapper">
-            <header>
-                {% block header %}{% endblock %}
-            </header>
-            <div id="main-content">
-                <div class="container-fluid">
-                    <div class="row row-tagline">
-                        <h2 class="display-4 text-center w-100">{% block tagline %}{% endblock %}</h2>
-                    </div>
-                </div>
+        <!-- Breadcrumbs are pushed down from the top position to rest right below our header, placing them first in the HTML fixes overlapping -->
+        <div class="container-breadcrumb fixed-top">
+            <div class="container">
+                {% block breadcrumbs %}{% endblock %}
+            </div>
+        </div>
+        {% block header %}{% endblock %}
 
+        <div id="wrapper">
+            <div id="main-content">
                 {% block body %}{% endblock %}
             </div>
 

@@ -9,6 +9,7 @@ namespace App\Form\User\Profile;
 
 use App\Form\AddressType;
 use App\Form\User\InfoType;
+use App\Form\UserType;
 use App\Http\Request\Handler\UserRegisterRequestHandler;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -27,6 +28,7 @@ class EditType extends AbstractType
     $data = $options['data'];
     $builder
       ->setMethod(Request::METHOD_POST)
+      ->add('user', UserType::class, ['data' => $data['user']])
       ->add('userinfo', InfoType::class, ['data' => $data['info']])
       ->add('addresses', CollectionType::class, [
         'entry_type' => AddressType::class,

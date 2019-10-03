@@ -1,35 +1,16 @@
+body {
+  padding-top: 9rem;
+}
+
 #main-navigation {
   background: url('/assets/images/header-background.jpg') center center no-repeat;
   background-size: cover;
   font-weight: 600;
-  flex-direction: column;
-  flex-grow: 1;
   padding: 0;
 
-  .container-fluid {
-    padding: 0;
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.40);
-      width: 100%;
-      position: relative;
-      padding: 15px 20px;
-
-      @media (min-width: 768px) {
-        & > .row > .col {
-          display: flex;
-        }
-      }
-    }
-
-    .main-menu {
-      padding-top: 10px;
-
-      .nav-link:hover {
-        border-radius: 3px;
-        background: rgba(255, 255, 255, 0.25);
-      }
-    }
+  .container {
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
 
     .navbar-brand {
       color: #FFFFFF;
@@ -59,5 +40,3 @@
     }
   }
 }
-
-@import "structure/user/navigation";

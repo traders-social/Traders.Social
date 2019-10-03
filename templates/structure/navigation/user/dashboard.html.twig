@@ -1,0 +1,6 @@
+<div class="list-group quick-access">
+    <a href="{{ path('manage.dashboard') }}" class="list-group-item list-group-item-action  {{ app.request.get('_route') == 'manage.dashboard' ? 'active' }}">Dashboard</a>
+    <a href="{{ path('manage.auction.list') }}" class="list-group-item list-group-item-action {{ app.request.get('_route') == 'manage.auction.list' ? 'active' }}">Manage auctions</a>
+    <a href="{{ path('manage.profile') }}" class="list-group-item list-group-item-action {{ app.request.get('_route') == 'manage.profile' ? 'active' }}">Manage profile</a>
+    <a href="{{ path('user.profile', {'slug': app.user.slug }) }}" class="list-group-item list-group-item-action">View public profile</a>
+</div>

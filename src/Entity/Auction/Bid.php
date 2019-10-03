@@ -4,7 +4,7 @@ namespace App\Entity\Auction;
 
 use App\Entity\Auction;
 use App\Entity\Traits\ModificationAware;
-use App\Entity\Traits\SoftDeletable;
+use App\Entity\Traits\SoftDeleteable;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Bid
 {
-    use ModificationAware, SoftDeletable;
+    use ModificationAware, SoftDeleteable;
   
     /**
      * @ORM\Id()

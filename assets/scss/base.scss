@@ -2,6 +2,7 @@
 @import "variables";
 
 html, body, #wrapper {
+  border: none;
   font-family: 'Montserrat', sans-serif;
   min-height: 100%;
   height: 100%;
@@ -17,28 +18,20 @@ html {
 
   #main-content {
     flex: 1;
-
-    & > .container, & > .container-fluid {
-      background: #FFFFFF;
-
-      .row.row-tagline {
-        padding: 15px 40px;
-        font-style: italic;
-      }
-    }
   }
 
   & > footer {
     padding-top: 30px;
     background: $baseDark;
-
     color: white;
   }
 
 }
 
 @import "helper";
-@import "home/home";
-@import "forms/forms";
-@import "user/user";
+@import "forms/all";
+@import "structure/all";
+@import "user/all";
+
+
 

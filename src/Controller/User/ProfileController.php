@@ -7,44 +7,32 @@
 
 namespace App\Controller\User;
 
-use App\Form\User\Profile\EditType;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 
-class ProfileController extends AbstractController
-{
-  /**
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   * @return Response
-   * @Route("/profile", name="user.profile")
-   */
-  public function profile(Request $request): Response
-  {
-    return $this->render('user/profile.html.twig');
-  }
+/**
+ * Class ProfileController
+ *
+ * @package App\Controller
+ */
+class ProfileController extends AbstractController {
   
   /**
-   * @param \Symfony\Component\Security\Core\Security $security
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   * @return Response
-   * @Route("/profile/edit", name="user.profile.edit")
+   * @Route("/user/{slug}", name="user.profile")
+   *
+   * @param Request $request
+   * @return \Symfony\Component\HttpFoundation\Response
    */
-  public function edit(Security $security, Request $request): Response
-  {
-    /** @var \App\Entity\User $user */
-    $user = $security->getUser();
-    $mergedData = array(
-      'user' => $user,
-      'info' => $user->getInfo()
-    );
-  
-    $form = $this->createForm(EditType::class, $mergedData);
-    return $this->render(
-      'user/profile/edit.html.twig',
-      ['form' => $form->createView()]
-    );
+  public function view(Request $request) {
+    $user = $this->getDoctrine()
+      ->getManagerForClass(User::class)
+      ->getRepository(User::class)
+      ->findOneBy(['slug' => $request->get('slug')]);
+    
+    if (null === $user) $this->redirectToRoute('home');
+    
+    return $this->render('user/profile.html.twig', ['user' => $user]);
   }
 }

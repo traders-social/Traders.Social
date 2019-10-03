@@ -1,0 +1,84 @@
+# services to handle doctrine extensions
+services:
+  # Doctrine Extension listeners to handle behaviors
+  gedmo.listener.tree:
+    alias: Gedmo\Tree\TreeListener
+
+  Gedmo\Tree\TreeListener:
+    class: Gedmo\Tree\TreeListener
+    tags:
+        - { name: doctrine.event_subscriber, connection: default }
+    calls:
+      - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+  gedmo.translatable.translatable:
+    alias: Gedmo\Translatable\TranslatableListener
+
+  Gedmo\Translatable\TranslatableListener:
+    class: Gedmo\Translatable\TranslatableListener
+    tags:
+      - { name: doctrine.event_subscriber, connection: default }
+    calls:
+      - [ setAnnotationReader, [ "@annotation_reader" ] ]
+      - [ setDefaultLocale, [ "%locale%" ] ]
+      - [ setTranslationFallback, [ false ] ]
+
+  gedmo.listener.timestampable:
+    alias: Gedmo\Timestampable\TimestampableListener
+
+  Gedmo\Timestampable\TimestampableListener:
+    class: Gedmo\Timestampable\TimestampableListener
+    tags:
+      - { name: doctrine.event_subscriber, connection: default }
+    calls:
+      - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+  gedmo.listener.sluggable:
+    alias: Gedmo\Sluggable\SluggableListener
+
+  Gedmo\Sluggable\SluggableListener:
+    class: Gedmo\Sluggable\SluggableListener
+    tags:
+      - { name: doctrine.event_subscriber, connection: default }
+    calls:
+      - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+  gedmo.listener.sortable:
+    alias: Gedmo\Sortable\SortableListener
+
+  Gedmo\Sortable\SortableListener:
+    class: Gedmo\Sortable\SortableListener
+    tags:
+      - { name: doctrine.event_subscriber, connection: default }
+    calls:
+      - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+  gedmo.loggable.loggable:
+    alias: Gedmo\Loggable\LoggableListener
+
+  Gedmo\Loggable\LoggableListener:
+    class: Gedmo\Loggable\LoggableListener
+    tags:
+      - { name: doctrine.event_subscriber, connection: default }
+    calls:
+      - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+  gedmo.listener.blameable:
+    alias: Gedmo\Blameable\BlameableListener
+
+  Gedmo\Blameable\BlameableListener:
+    class: Gedmo\Blameable\BlameableListener
+    tags:
+      - { name: doctrine.event_subscriber, connection: default }
+    calls:
+      - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+  gedmo.listener.softdeleteable:
+    alias: Gedmo\SoftDeleteable\SoftDeleteableListener
+
+  Gedmo\SoftDeleteable\SoftDeleteableListener:
+    class: Gedmo\SoftDeleteable\SoftDeleteableListener
+    tags:
+      - { name: doctrine.event_subscriber, connection: default }
+    calls:
+      - [ setAnnotationReader, [ "@annotation_reader" ] ]

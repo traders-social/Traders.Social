@@ -10,6 +10,7 @@ namespace App\Entity\Traits;
 
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Trait ModificationAware
@@ -19,18 +20,19 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait ModificationAware
 {
-  use ModificationTimestamped {
-    ModificationTimestamped::onPrePersist as onParentPrePersists;
-    ModificationTimestamped::onPreUpdate as onParentPreUpdate;
-  }
+  use ModificationTimestamped;
   
   /**
-   * @ORM\OneToOne(targetEntity="App\Entity\User")
+   * @ORM\ManyToOne(targetEntity="App\Entity\User")
+   * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
+   * @Gedmo\Blameable(on="create")
    */
   private $created_by;
   
-    /**
-   * @ORM\OneToOne(targetEntity="App\Entity\User")
+  /**
+   * @ORM\ManyToOne(targetEntity="App\Entity\User")
+   * @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
+   * @Gedmo\Blameable(on="update")
    */
   private $updated_by;
   
@@ -51,7 +53,7 @@ trait ModificationAware
     $this->created_by = $created_by;
     
     // Creators update the entity as well
-    if(is_null($this->getUpdatedBy())) {
+    if(null === $this->getUpdatedBy()) {
       $this->setUpdatedBy($created_by);
     }
     
@@ -72,33 +74,12 @@ trait ModificationAware
    */
   public function setUpdatedBy(User $updated_by): self
   {
+    if(null === $this->getCreatedBy()) {
+      $this->setCreatedBy($updated_by);
+    }
+    
     $this->updated_by = $updated_by;
     
     return $this;
-  }
-  
-  /**
-   * Gets triggered only on insert
-   * @ORM\PrePersist
-   */
-  public function onPrePersist()
-  {
-    $this->onParentPrePersists();
-    if (is_null($this->updated_by) || is_null($this->created_by)) {
-      throw new \Exception(sprintf("%s is ModificationAware, it requires you to set the Creator and Updater before persisting", __CLASS__));
-    }
-  }
-  
-  /**
-   * Gets triggered every time on update
-   
-   * @ORM\PreUpdate
-   */
-  public function onPreUpdate()
-  {
-    $this->onParentPreUpdate();
-    if (is_null($this->updated_by)) {
-      throw new \Exception(sprintf("%s is ModificationAware, it requires you to set the Updater before persisting", __CLASS__));
-    }
   }
 }

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}🐟 Traders.Social - {{ create ? "Create" : "Edit" }} an Auction{% endblock %}
+
+{% block header %}
+    {% include 'structure/navigation/navigation.top.html.twig' %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include 'structure/navigation/breadcrumbs.html.twig' with {'breadcrumbs': [
+        { 'label': 'Dashboard', 'path': 'manage.dashboard' },
+        { 'label': 'Auctions', 'path': 'manage.auction.list' },
+        { 'label': create ? 'Create' : 'Edit ' ~ auction.title | capitalize, 'path': '#' }
+    ]} %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <header class="form-title">
+                    <h2><i class="fas fa-plus-square"></i>&nbsp;{{ create ? "Create" : "Edit" }} an Auction</h2>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                {{ form_start(form) }}
+                {% include 'forms/auction/edit.html.twig' with {'form': form, 'create': create} %}
+                {{ form_end(form) }}
+            </div>
+            <div class="col-4">
+                {% include 'structure/navigation/user/dashboard.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'structure/navigation/navigation.footer.html.twig' %}
+{% endblock %}

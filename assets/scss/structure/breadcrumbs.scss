@@ -1,0 +1,13 @@
+.container-breadcrumb {
+  // Leave space for the header
+  margin-top: 5.5rem;
+  background: $breadcrumb-bg;
+
+  .container {
+    padding: 0;
+    .breadcrumb {
+      padding-bottom: 0;
+    }
+  }
+
+}

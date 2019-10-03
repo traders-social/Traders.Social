@@ -11,6 +11,8 @@ namespace App\Form\Auction;
 use App\Entity\Auction;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,7 +24,6 @@ class EditType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     parent::buildForm($builder, $options);
-    
     $builder
       ->add('title', TextType::class)
       ->add('description', TextareaType::class)
@@ -32,6 +33,7 @@ class EditType extends AbstractType
           'required' => false,
         ]
       )
+      ->add('starting_bid', MoneyType::class)
       ->add('publish', SubmitType::class);
     ;
   }

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}🐟 Traders.Social - {{ auction.title }}{% endblock %}
+
+{% block header %}
+    {% include 'structure/navigation/navigation.top.html.twig' %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include 'structure/navigation/breadcrumbs.html.twig' with {'breadcrumbs': [
+        { 'label': 'Dashboard', 'path': 'manage.dashboard' },
+        { 'label': 'Auctions', 'path': 'manage.auction.list' },
+        { 'label': 'Statistics ' ~ auction.title | capitalize, 'path': '#' }
+    ]} %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <header class="form-title">
+                    <h2>{{ auction.title }}</h2>
+                </header>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="description col">
+                            {{ auction.description }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-4">
+                {% include 'structure/navigation/user/dashboard.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'structure/navigation/navigation.footer.html.twig' %}
+{% endblock %}

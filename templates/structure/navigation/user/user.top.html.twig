@@ -8,7 +8,8 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="topUserMenu">
             {% if app.user %}
-                <a class="dropdown-item" href="{{ path('user.profile') }}">Profile</a>
+                <a class="dropdown-item" href="{{ path('manage.dashboard') }}">Dashboard</a>
+                <a class="dropdown-item" href="{{ path('user.profile', {'slug': app.user.slug}) }}">Profile</a>
                 <a class="dropdown-divider" href="#">&nbsp;</a>
                 <a class="dropdown-item" href="{{ path('user.logout') }}">Logout</a>
             {% else %}

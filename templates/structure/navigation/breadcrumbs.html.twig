@@ -1,0 +1,9 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        {% for crumb in breadcrumbs %}
+            <li class="breadcrumb-item {{ crumb.path == '#' ? 'active' : '' }}" {{ crumb.path == '#' ? 'aria-current="page"' : '' }}>
+                <a href="{{ crumb.path == '#' ? '#' : path(crumb.path) }}">{{ crumb.label }}</a>
+            </li>
+        {% endfor %}
+    </ol>
+</nav>

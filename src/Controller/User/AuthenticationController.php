@@ -37,7 +37,8 @@ class AuthenticationController extends AbstractController
     $form->handleRequest($request);
     
     if ($form->isSubmitted() && $form->isValid()) {
-      return $this->redirectToRoute('user.profile');
+      // Redirect to personal dashboard
+      return $this->redirectToRoute('manage.dashboard');
     }
     
     // get the login error if there is one

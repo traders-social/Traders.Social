@@ -7,15 +7,25 @@
 
 namespace App\Entity\Traits;
 
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+/**
+ * Trait ModificationTimestamped
+ *
+ * @package App\Entity\Traits
+ */
 trait ModificationTimestamped
 {
   /**
    * @ORM\Column(type="datetime")
+   * @Gedmo\Timestampable(on="create")
    */
   private $created_at;
   
   /**
    * @ORM\Column(type="datetime")
+   * @Gedmo\Timestampable(on="update")
    */
   private $updated_at;
   
@@ -34,25 +44,4 @@ trait ModificationTimestamped
   protected function setUpdatedAt(\DateTime $time) {
     $this->updated_at = $time;
   }
-  
-  /**
-   * Gets triggered only on insert
-   * @ORM\PrePersist
-   */
-  public function onPrePersist()
-  {
-    $this->setCreatedAt(new \DateTime("now"));
-    $this->setUpdatedAt(new \DateTime("now"));
-  }
-  
-  /**
-   * Gets triggered every time on update
-   
-   * @ORM\PreUpdate
-   */
-  public function onPreUpdate()
-  {
-    $this->setUpdatedAt(new \DateTime("now"));
-  }
-  
 }

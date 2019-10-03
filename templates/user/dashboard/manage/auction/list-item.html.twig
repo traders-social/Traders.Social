@@ -1,0 +1,12 @@
+
+<tr>
+    <td>{{ auction.Title }}</td>
+    <td>{{ auction.Description }}</td>
+    <td>&euro;&nbsp;{{ auction.StartingBid }}</td>
+    <td>{{ auction.LatestBid ?: 'No bids yet' }}</td>
+    <td>{{ auction.UpdatedAt|date("D, jS F Y") }}</td>
+    <td>
+        {% include "user/dashboard/manage/auction/list-item-actions.html.twig" with {'auction': auction} %}
+    </td>
+</tr>
+

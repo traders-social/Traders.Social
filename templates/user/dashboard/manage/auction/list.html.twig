@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title %}🐟 Traders.Social - Your current Auction{% endblock %}
+
+{% block header %}
+    {% include 'structure/navigation/navigation.top.html.twig' %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include 'structure/navigation/breadcrumbs.html.twig' with {'breadcrumbs': [
+        { 'label': 'Dashboard', 'path': 'manage.dashboard' },
+        { 'label': 'Auctions', 'path': '#' },
+    ]} %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <header class="form-title">
+                    <h2><i class="fas fa-search-dollar"></i>&nbsp;Manage your Auctions</h2>
+                    <a href="{{ path('manage.auction.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> New auction</a>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <table class="table table-striped table-borderless">
+                    <thead>
+                    <tr class="">
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Starting Bid</th>
+                        <th>Latest Bid</th>
+                        <th>Updated At</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for auction in auctions %}
+                        {% include 'user/dashboard/manage/auction/list-item.html.twig' with {'auction': auction} %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                {% include 'structure/navigation/user/dashboard.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'structure/navigation/navigation.footer.html.twig' %}
+{% endblock %}

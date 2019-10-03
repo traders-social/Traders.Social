@@ -1,7 +1,0 @@
-<div class="list-group quick-access">
-    <a href="{{ path('user.profile') }}" class="list-group-item list-group-item-action  {{ app.request.get('_route') == 'user.profile' ? 'active' }}">Profile</a>
-    <a href="{{ path('user.profile.edit') }}" class="list-group-item list-group-item-action {{ app.request.get('_route') == 'user.profile.edit' ? 'active' }}">Manage profile</a>
-    <a href="{{ path('auction.create') }}" class="list-group-item list-group-item-action {{ app.request.get('_route') == 'auction.create' ? 'active' }}">Create Auction</a>
-    <a href="{{ path('auction.manage') }}" class="list-group-item list-group-item-action {{ app.request.get('_route') == 'auction.manage' ? 'active' }}">Manage Auctions</a>
-    <a href="{{ path('user.logout') }}" class="list-group-item list-group-item-action {{ app.request.get('_route') == 'user.logout' ? 'active' }}">Logout</a>
-</div>
