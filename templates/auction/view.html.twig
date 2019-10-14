@@ -26,9 +26,19 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+
+
+        <div class="row">
+            <div class="col">Place a bid!</div>
+        </div>
+        {{ form_start(bidform) }}
+        <div class="row">
+            <div class="col">{{ form_label(bidform.amount) }}</div>
+            <div class="col">{{ form_widget(bidform.amount) }}</div>
+        </div>
+        {{ form_end(bidform) }}
     </div>
 {% endblock %}
 

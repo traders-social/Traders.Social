@@ -1,15 +1,25 @@
 <div class="row feed-item">
     <div class="col-auto">
-        <i class="fas fa-gavel feed-item-icon {{ item.type }}"></i>
+        {% if item.type == 'auction' %}
+        <i class="fas fa-gavel feed-item-icon feed-{{ item.type }}"></i>
+        {% else %}
+        <i class="fas fa-comment-dollar feed-item-icon feed-{{ item.type }}"></i>
+        {% endif %}
     </div>
     <div class="col">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-2 feed-item-title">
+                <div class="col-auto">
+                    {{ item.timestamp|date("D, jS F Y") }}
+                </div>
+                <div class="col-auto feed-item-title">
                     {{ item.title }}
                 </div>
-                <div class="col-10 feed-item-description">
+                <div class="col-auto feed-item-description">
                     {{ item.description }}
+                </div>
+                <div class="col-auto feed-item-link">
+                    <a href="{{ item.link }}" class="btn btn-primary"><i class="far fa-eye"></i></a>
                 </div>
             </div>
         </div>

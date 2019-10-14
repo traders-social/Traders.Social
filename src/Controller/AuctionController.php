@@ -9,6 +9,7 @@ namespace App\Controller;
 
 
 use App\Entity\Auction;
+use App\Form\Auction\Bid\CreateType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,18 +47,31 @@ class AuctionController extends AbstractController
     $auction = $this->getDoctrine()
       ->getManagerForClass(Auction::class)
       ->getRepository(Auction::class)
-      ->findOneBy([
-        'slug' => $request->get('slug')
-      ]);
+      ->findOneBy(['slug' => $request->get('slug')]);
   
     if (is_null($auction)) {
-      return $this->redirectToRoute('auction.manage');
+      return $this->redirectToRoute('auction.list');
+    }
+    
+    $bid = new Auction\Bid();
+    $form = $this->createForm(CreateType::class, $bid, ['canBid' => $auction->getCreatedBy() !== $this->getUser()]);
+
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid() && $auction->getCreatedBy() !== $this->getUser()) {
+      $bid->setAuction($auction);
+      $bid->setUser($this->getUser());
+      $bid->setCreatedBy($this->getUser());
+    
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->persist($bid);
+      $entityManager->flush();
     }
     
     return $this->render(
       'auction/view.html.twig',
       [
-        'auction' => $auction
+        'auction' => $auction,
+        'bidform' => $form->createView()
       ]
     );
   }

@@ -7,6 +7,7 @@
 
 namespace App\Controller\Dashboard;
 
+use App\Services\DashboardFeedService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,13 +27,13 @@ class DashboardController extends AbstractController
    * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
+   * @param \App\Services\DashboardFeedService
    *
    * @return Response
    */
-  public function index(Request $request): Response
+  public function index(Request $request, DashboardFeedService $service): Response
   {
-    $feed = $this->getUser()->getFeed();
-    return $this->render('user/dashboard.html.twig', ['feed' => $feed]);
+    return $this->render('user/dashboard.html.twig', ['feed' => $service->getFeedData($this->getUser())]);
   }
 }
   
